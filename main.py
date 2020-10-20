@@ -63,8 +63,33 @@ while run:
                 run = False
             elif e.unicode.isdecimal() and block == 0:
                 numeral += e.unicode
+            elif e.key == pygame.K_BACKSPACE:
+                numeral = nameral[:-1]
+            elif e.key == pygame.K_RETURN and numeral:
+                if int(numeral) > 100:
+                    dialogs('', OUTSIDE_BG, 'вы ошиблись')
+                elif int(numeral) > num:
+                    dialogs('', OUTSIDE_BG, 'число меньше')
+                elif int(numeral) < num:
+                    dialogs('', OUTSIDE_BG, 'число больше')
+                if move == 1:
+                    if int(numeral) == num:
+                        dialogs(f'это число {numeral}', dialog_cat_pos, 'кот, ты выйграл')
+                        block = 1
+                    else:
+                        dialogs('Дог твой ход', dialog_cat_pos, 'продолжаем')
+                elif move == 2:
+                    if int(numeral) == num:
+                        dialogs(f'это число', dialog_dog_pos, 'Дог ты выйграл')
+                        block = 1
+                    else:
+                        dialogs('Кот твой ход', dialog_dog_pos, 'Продолжаем')
+                numeral = ''
+                move += 1
+                if move > 2:
+                    move = 1
 
-    if start == 0:
+    if block == 0:
         screen.blit(bg, bg_rect)
         screen.blit(cat, cat_rect)
         screen.blit(dog, dog_rect)
