@@ -16,7 +16,7 @@ OUTSIDE_BG = (0, -100)
 pygame.init()
 pygame.display.set_caption("угадай число ")
 screen = pygame.display.set_mode((W, H))
-pygame.mouse.set_visible(True)
+pygame.mouse.set_visible(False)
 
 font = pygame.font.SysFont('Arial', 28, True, False)
 font_box = pygame.Surface((W - font.get_height(), font.get_height()))
@@ -67,20 +67,20 @@ while run:
                 numeral = nameral[:-1]
             elif e.key == pygame.K_RETURN and numeral:
                 if int(numeral) > 100:
-                    dialogs('', OUTSIDE_BG, 'вы ошиблись')
+                    dialogs('', OUTSIDE_BG, 'Вы ошиблись')
                 elif int(numeral) > num:
-                    dialogs('', OUTSIDE_BG, 'число меньше')
+                    dialogs('', OUTSIDE_BG, 'Число меньше')
                 elif int(numeral) < num:
-                    dialogs('', OUTSIDE_BG, 'число больше')
+                    dialogs('', OUTSIDE_BG, 'Число больше')
                 if move == 1:
                     if int(numeral) == num:
-                        dialogs(f'это число {numeral}', dialog_cat_pos, 'кот, ты выйграл')
+                        dialogs(f'Это число {numeral}', dialog_cat_pos, 'Кот, ты выйграл')
                         block = 1
                     else:
-                        dialogs('Дог твой ход', dialog_cat_pos, 'продолжаем')
+                        dialogs('Дог твой ход', dialog_cat_pos, 'Продолжаем')
                 elif move == 2:
                     if int(numeral) == num:
-                        dialogs(f'это число', dialog_dog_pos, 'Дог ты выйграл')
+                        dialogs(f'Это число', dialog_dog_pos, 'Дог ты выйграл')
                         block = 1
                     else:
                         dialogs('Кот твой ход', dialog_dog_pos, 'Продолжаем')
@@ -100,7 +100,7 @@ while run:
     pygame.display.update()
 
     if start == 1:
-        dialogs('', OUTSIDE_BG, 'я загадала число')
-        dialogs('', OUTSIDE_BG, 'от нуля до 100')
-        dialogs('кот, твой ход', dialog_dog_pos, 'отгадайте его')
+        dialogs('', OUTSIDE_BG, 'Я загадала число')
+        dialogs('', OUTSIDE_BG, 'От нуля до 100')
+        dialogs('кот, твой ход', dialog_dog_pos, 'Отгадайте его')
         start = 0
